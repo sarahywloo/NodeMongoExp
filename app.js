@@ -7,11 +7,13 @@ var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
 
+// where app gets started
 var app = express();
 
 // view engine setup
+// adding default views to the views dir
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 
@@ -24,8 +26,10 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// tell code to use our routes here
+// the '/' means ALL request paths
 app.use('/', index);
-app.use('/users', users);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
